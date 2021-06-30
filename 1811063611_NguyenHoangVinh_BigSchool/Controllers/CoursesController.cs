@@ -8,6 +8,7 @@ namespace _1811063611_NguyenHoangVinh_BigSchool.Controllers
 {
     public class CoursesController : Controller
     {
+        //hehe vinh
         // GET: Courses
         public ActionResult Create()
         {
