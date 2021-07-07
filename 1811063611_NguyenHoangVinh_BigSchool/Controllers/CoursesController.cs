@@ -42,7 +42,7 @@ namespace _1811063611_NguyenHoangVinh_BigSchool.Controllers
             }
             var course = new Course
             {
-                LecturerID = User.Identity.GetUserId(),
+                LecturerId = User.Identity.GetUserId(),
                 DateTime = viewModel.GetDateTime(),
                 CategoryId = viewModel.Category,
                 Place = viewModel.Place,

@@ -12,7 +12,7 @@ namespace _1811063611_NguyenHoangVinh_BigSchool.Models
         public int Id { get; set; }
         public ApplicationUser Lecturer { get; set; }
         [Required]
-        public string LecturerID { get; set; }
+        public string LecturerId { get; set; }
         [Required]
         [StringLength(250)]
         public string Place { get; set; }
