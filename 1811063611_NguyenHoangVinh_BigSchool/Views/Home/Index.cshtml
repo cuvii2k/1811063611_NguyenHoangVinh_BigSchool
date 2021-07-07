@@ -1,11 +1,10 @@
-﻿@model IEnumerable<_1811063611_NguyenHoangVinh_BigSchool.Models.Course >
+﻿@model _1811063611_NguyenHoangVinh_BigSchool.ViewModels.CoursesViewModel
 
 @{
     ViewBag.Title = "Home Page";
 }
-<div class="row">
-    <ul>
-        @foreach (var course in Model)
+<ul class="course">
+    @foreach( var course in Model.UpcommingCourses)
         {
             <li>
                 <div class="date">
@@ -23,12 +22,15 @@
                         {
                         <button class=" btn btn-default btn-sm js-toggle-follow" data-user-id =" @course.LecturerId">Follow</button>
                         }
+                        <br>
                     </span>
                     <span class="category">
                         @course.Category.Name
                     </span>
-                    
+                    @if(Model.ShowAction)
+                    {
                     <button data-course-id="@course.Id" class=" btn btn-default btn-sm js-toggle-attendance">Going?</button>
+                    }
                 </div>
             </li>
         }
@@ -67,8 +69,6 @@ import { Button } from "bootstrap";
             });
         </script>
     }
-</div>
-
 <div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>

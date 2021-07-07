@@ -13,7 +13,7 @@ namespace _1811063611_NguyenHoangVinh_BigSchool.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202107070358044_AddFollowingsTable"; }
+            get { return "202107071623471_AddFollowingsTable"; }
         }
         
         string IMigrationMetadata.Source
