@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using _1811063611_NguyenHoangVinh_BigSchool.Models;
 using _1811063611_NguyenHoangVinh_BigSchool.ViewModels;
 using Microsoft.AspNet.Identity;
+using Nest;
+//using Nest;
 
 namespace _1811063611_NguyenHoangVinh_BigSchool.Controllers
 {
@@ -16,6 +18,7 @@ namespace _1811063611_NguyenHoangVinh_BigSchool.Controllers
         // GET: Courses
         // update 4/7/21
         private readonly ApplicationDbContext _dbContext;
+
         public CoursesController()
         {
             _dbContext = new ApplicationDbContext();
@@ -68,6 +71,34 @@ namespace _1811063611_NguyenHoangVinh_BigSchool.Controllers
                 ShowAction = User.Identity.IsAuthenticated
             };  
                 return View(viewModel);
+        }
+        [Authorize]
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var courses = _dbContext.Courses
+                .Where(c => c.LecturerId == userId && c.DateTime > DateTime.Now)
+                .Include(l => l.Lecturer)
+                .Include(c => c.Category)
+                .ToList();
+
+            return View(courses);
+        }
+        //some trouble in here
+        public ActionResult Edit()
+        {
+            var userId = User.Identity.GetUserId();
+            var course = _dbContext.Courses.Single(c => c.Id == Id && c.LecturerId == userId);
+            var viewModel = new CourseViewModel
+            {
+                Categories = _dbContext.Categories.ToList(),
+                Date = course.DateTime.ToString("dd/M/yyyy"),
+                Time = course.DateTime.ToString("HH:mm"),
+                Category = course.CategoryId,
+                Place = course.Place,
+            };
+            return View("Create", viewModel);
         }
     }
 }
