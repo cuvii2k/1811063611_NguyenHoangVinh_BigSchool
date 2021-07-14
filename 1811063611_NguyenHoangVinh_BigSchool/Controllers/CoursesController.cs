@@ -56,6 +56,7 @@ namespace _1811063611_NguyenHoangVinh_BigSchool.Controllers
             _dbContext.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
+        [Authorize]
         public ActionResult Attending()
         {
             var userId = User.Identity.GetUserId();
@@ -72,6 +73,16 @@ namespace _1811063611_NguyenHoangVinh_BigSchool.Controllers
                 ShowAction = User.Identity.IsAuthenticated
             };
             return View(viewModel);
+        }
+        public ActionResult Following()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var follow = _dbContext.Followings
+                .Where(a => a.FollowerId == userId)     
+                .Include(l => l.Followee)
+                .ToList();
+            return View(follow);
         }
         [Authorize]
         public ActionResult Mine()

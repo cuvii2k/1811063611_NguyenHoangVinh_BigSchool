@@ -1,0 +1,41 @@
+﻿@model IEnumerable<_1811063611_NguyenHoangVinh_BigSchool.Models.Following>
+@{
+    ViewBag.Title = "Following";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Following</h2>
+<ul class="course">
+    @foreach (var course in Model)
+    {
+
+        <div class="details">
+            <span class="lecturer">
+                @course.Followee.Name
+                <button data-user-id="@course.FolloweeId" class="btn btn-info btn-sm js-toggle-un-follow"> Follow</button>
+            </span>
+        </div>
+
+    }
+</ul
+@section scripts
+   {
+    <script>
+        $(document).ready(function () {
+            $(".js-toggle-un-follow").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/unfollow", { FolloweeId: button.attr("data-user-id") })
+                    .done(function () {
+                        alert("Đã hủy thành công");
+                        button
+                            .removeClass("btn-info")
+                            .addClass("btn-default")
+                            .text("Following?");
+                    })
+                    .fail(function () {
+                        alert("something failed");
+                    });
+            });
+        });
+    </script>
+}
