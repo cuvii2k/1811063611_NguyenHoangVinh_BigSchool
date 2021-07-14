@@ -10,6 +10,7 @@ namespace _1811063611_NguyenHoangVinh_BigSchool.ViewModels
     public class CoursesViewModel
     {
         private readonly ApplicationDbContext _dbContext;
+        public string dataSearch { get; set; } 
         public CoursesViewModel()
         {
             _dbContext = new ApplicationDbContext();

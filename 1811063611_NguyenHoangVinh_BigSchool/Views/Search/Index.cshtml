@@ -1,9 +1,12 @@
 ﻿@model _1811063611_NguyenHoangVinh_BigSchool.ViewModels.CoursesViewModel
-
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Microsoft.AspNet.Identity
+<h2>kết quả tìm kiếm</h2>
+
+
 
 <h4>Search Lecture:</h4>
 <form class="input-group w-50 float-right" action="/Search" method="get">
