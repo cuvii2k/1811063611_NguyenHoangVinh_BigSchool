@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 
 namespace _1811063611_NguyenHoangVinh_BigSchool.Controllers
 {
+    /// chấm bài
+    /// </summary>
     [Authorize]
     public class AttendancesController : ApiController
     {
